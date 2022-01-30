@@ -1,6 +1,5 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  target: 'static',
   head: {
     title: 'table-comments',
     meta: [
@@ -53,5 +52,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+  target: 'static',
+  ssr: false,
+  generate: {
+    fallback: true
   }
 }
