@@ -46,7 +46,7 @@
 export default {
   props: {
     comments: {
-      type: Object,
+      type: Array,
       default: null
     }
   },
