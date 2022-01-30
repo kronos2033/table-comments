@@ -89,7 +89,10 @@ export default {
 .table .table__data:last-child {
   border-right: none;
 }
-
+.table .table__body .table__row:hover {
+  cursor: pointer;
+  color: #7D82A8;
+}
 .table .table__body .table__row:nth-child(even) td {
   background: #D4D8F9;
 }

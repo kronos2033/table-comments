@@ -3,6 +3,13 @@
     <CommentsTable :comments="comments" />
     <div class="btns">
       <button
+        v-if="pageNumber !== 1"
+        class="btn"
+        @click="goPageWithNumber(1)"
+      >
+        &lt;&lt;
+      </button>
+      <button
         v-if="pageNumber>1"
         class="btn btn_go_prev"
         @click="goPageWithNumber(pageNumber - 1)"
@@ -24,6 +31,13 @@
         @click="goPageWithNumber(pageNumber + 1)"
       >
         &gt;
+      </button>
+      <button
+        v-if="pageNumber !== maxPageCount/limit"
+        class="btn"
+        @click="goPageWithNumber(maxPageCount/limit)"
+      >
+        &gt;&gt;
       </button>
     </div>
   </div>
@@ -48,6 +62,9 @@ export default {
       pageBtnValues: []
     }
   },
+  mounted () {
+    this.calculateBtnValues()
+  },
   methods: {
     async fetchNewPage () {
       this.comments = await fetch(`${this.BASE_URL}${this.pageNumber}`)
@@ -62,9 +79,13 @@ export default {
       const btnsCount = 3
       this.pageBtnValues = []
       if (this.pageNumber > this.maxPageCount / this.limit - btnsCount) {
+        // eslint-disable-next-line no-console
+        console.log('if')
         this.pageBtnValues.push(this.maxPageCount / this.limit - 2, this.maxPageCount / this.limit - 1, this.maxPageCount / this.limit)
       } else {
-        this.pageBtnValues.push(this.pageNumber, this.pageNumber + 1, this.pageNumber + 2, this.maxPageCount / this.limit)
+        // eslint-disable-next-line no-console
+        console.log('else')
+        this.pageBtnValues.push(this.pageNumber, this.pageNumber + 1, this.pageNumber + 2)
       }
     }
   }
